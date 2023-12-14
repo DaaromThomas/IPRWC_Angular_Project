@@ -1,1 +1,5 @@
-<p>shop works!</p>
+<div class="container">
+    <app-product-list class="screen" *ngIf="selectedScreen === 'product-list'" (productSelected)="onProductSelected($event)"></app-product-list>
+    <app-product-details *ngIf="selectedScreen === 'product-details'" [selectedProduct]="selectedProduct" (goBack)="goBackToProductList()"></app-product-details>
+</div>
+

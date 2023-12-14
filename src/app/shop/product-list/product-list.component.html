@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="products">
+        <div class="product" *ngFor="let product of products; let i = index" (click)="selectProduct(product)">
+            <div class="info">
+                <p>{{ product.name }}</p>
+                <p>{{ product.image }}</p>
+            </div>
+            <p class="cost">€{{ product.cost }}</p>
+        </div>
+    </div>
+</div>
