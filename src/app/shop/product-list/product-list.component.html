@@ -1,11 +1,10 @@
 <div class="container">
     <div class="products">
-        <div class="product" *ngFor="let product of products; let i = index" (click)="selectProduct(product)">
-            <div class="info">
-                <p>{{ product.name }}</p>
-                <p>{{ product.image }}</p>
+        <div class="product-container" *ngFor="let product of products; let i = index">
+            <div class="info" (click)="selectProduct(product)">
+                <app-product [product]="product"></app-product>
             </div>
-            <p class="cost">€{{ product.cost }}</p>
+            <button class="button" id="add-to-cart-button" (click)="addToCart(product)">Add to cart</button>
         </div>
     </div>
 </div>
