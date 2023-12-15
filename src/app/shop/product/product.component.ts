@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { EventEmitter } from 'stream';
-import { Product } from '../../../interfaces/Product';
+import { Product } from '../../interfaces/Product';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -9,5 +10,13 @@ import { Product } from '../../../interfaces/Product';
 })
 export class ProductComponent {
   @Input() product!: Product;
+
+  constructor(private cartService: CartService){}
+
+
+  deleteThisFromCart(){
+    this.cartService.removeFromCart(this.product);
+  }
+
 
 }

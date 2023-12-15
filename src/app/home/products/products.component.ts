@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit {
   ];
 
   mostSoldProducts: Product[] = [
-    new Product("name", 'testimage', 30.3)
+    new Product(1, "name", 'testimage', 30.3)
   ];
 
   index = 0;

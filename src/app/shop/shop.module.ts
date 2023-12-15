@@ -7,7 +7,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CartService } from '../services/cart.service';
 import { ProductServiceService } from '../services/product-service.service';
-import { ProductComponent } from './product-list/product/product.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [ShopComponent, ProductListComponent, ProductDetailsComponent, ShoppingCartComponent, ProductComponent],

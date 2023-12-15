@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/Product';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +19,12 @@ export class CartService {
     this.productsInCart.push(product);
     this.productsInCart$.next(this.productsInCart);
   }
+
+  removeFromCart(product: Product) {
+    for (let index in this.productsInCart) {
+        if (this.productsInCart[index] === product) {
+            this.productsInCart.splice(parseInt(index), 1);
+        }
+    }
+}
 }
