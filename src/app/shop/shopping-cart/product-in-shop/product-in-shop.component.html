@@ -1,2 +1,7 @@
-<app-product [product]="product"></app-product>
-<button (click)="deleteThisFromCart()">Delete</button>
+<div class="container">
+    <div class="info">
+        <p>Name: {{ product.name }}</p>
+        <p>Cost: {{ product.cost}}</p>
+    </div>
+    <button (click)="deleteThisFromCart()">Delete</button>
+</div>
