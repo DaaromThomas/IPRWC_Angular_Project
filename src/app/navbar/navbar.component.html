@@ -3,7 +3,6 @@
         <div class="button">
              <a [routerLink]="['home']" routerLinkActive="active" class="route">Home</a>
         </div>
-        
     </div>
     <div class="grid-column-2">
         <img src="assets/Castore_x_Feyenoord_b3645335-113c-4d50-9eb2-64030b08af0a.avif">
@@ -11,8 +10,9 @@
     <div class="grid-column-3">
         <div class="button">
             <a [routerLink]="['shop']" routerLinkActive="active" class="route">Shop</a>
-            <a [routerLink]="['cart']" routerLinkActive="active" class="route">Cart({{numberOfProductsInCart}})</a>
+        </div>
+        <div class="button">
+            <a [routerLink]="['cart']" routerLinkActive="active" class="route">Cart ({{numberOfProductsInCart}})</a>
         </div>
     </div>
 </div>
-

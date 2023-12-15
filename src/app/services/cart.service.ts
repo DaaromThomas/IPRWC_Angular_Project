@@ -26,5 +26,6 @@ export class CartService {
             this.productsInCart.splice(parseInt(index), 1);
         }
     }
+    this.productsInCart$.next(this.productsInCart);
 }
 }
