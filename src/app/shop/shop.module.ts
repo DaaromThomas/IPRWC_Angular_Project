@@ -8,9 +8,10 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CartService } from '../services/cart.service';
 import { ProductServiceService } from '../services/product-service.service';
 import { ProductComponent } from './product/product.component';
+import { ProductInShopComponent } from './shopping-cart/product-in-shop/product-in-shop.component';
 
 @NgModule({
-  declarations: [ShopComponent, ProductListComponent, ProductDetailsComponent, ShoppingCartComponent, ProductComponent],
+  declarations: [ShopComponent, ProductListComponent, ProductDetailsComponent, ShoppingCartComponent, ProductComponent, ProductInShopComponent],
   imports: [CommonModule, BrowserModule],
   exports: [ShopComponent],
   providers: [CartService, ProductServiceService]
