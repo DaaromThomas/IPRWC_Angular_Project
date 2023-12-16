@@ -25,6 +25,7 @@ export class CartService {
         if (this.productsInCart[index] === product) {
             this.productsInCart.splice(parseInt(index), 1);
         }
+        break;
     }
     this.productsInCart$.next(this.productsInCart);
 }
