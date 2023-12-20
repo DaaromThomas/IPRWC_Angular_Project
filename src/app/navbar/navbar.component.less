@@ -28,28 +28,61 @@
         flex-direction: row;
     }
 
-    .button {
-        background-color: #e2001a;
-        width: 60px;
-        height: 60px;
-        margin: 0px 5px;
-        position: relative;
-        border-radius: 5px;
-
-        .active::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: white;
+    .navbar-item{
+        .button {
+            background-color: #e2001a;
+            width: 60px;
+            height: 60px;
+            margin: 0px 5px;
+            position: relative;
+            border-radius: 5px;
+    
+            .active::after {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: white;
+            }
+    
+            &:hover {
+                background-color: white;
+            }
         }
 
-        &:hover {
-            background-color: white;
+        .login-button {
+            width: fit-content;
+            height: 60px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        
+            &:hover {
+                color: #e2001a;
+            }
+        
+            &.active {
+                color: #e2001a;
+        
+                &:after {
+                    content: "";
+                    position: absolute;
+                    bottom: -10px;
+                    left: 0;
+                    width: 100%;
+                    height: 1px;
+                    background-color: #e2001a;
+                }
+            }
         }
+        
     }
+
+    
 
     .route {
         text-decoration: none;

@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home/home.module';
 import { ShopModule } from './shop/shop.module';
+import { LoginComponent } from './login/login.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    LoginComponent,
     ],
   imports: [
     AppRoutingModule,
     HomeModule,
-    ShopModule
+    ShopModule,
+    CommonModule
   ],
   providers: [
     provideClientHydration()

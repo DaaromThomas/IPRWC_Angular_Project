@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'IPRWC_Angular_Project';
+
+  public shopping: boolean = true;
+
+  setShopping(value: boolean){
+    this.shopping = value;
+  }
+
+  getShopping(value: boolean){
+    this.shopping = value;
+  }
 }

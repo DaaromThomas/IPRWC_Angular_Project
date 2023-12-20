@@ -9,6 +9,7 @@ import { CartService } from '../../services/cart.service';
 })
 export class ShoppingCartComponent {
   productsInCart: Product[] = [];
+  public cost: number = 0;
 
   constructor(private cartService: CartService) {
     
@@ -19,7 +20,13 @@ export class ShoppingCartComponent {
       .all()
       .subscribe((data: Product[]) => {
         this.productsInCart = data;
-        console.log(this.productsInCart[0]);
+        console.log(data);
       });
+
+    this.cartService
+      .cost()
+      .subscribe((data: number) => {
+        this.cost = data;
+      })
   }
 }

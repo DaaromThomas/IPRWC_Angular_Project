@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { EventEmitter } from 'stream';
 import { Product } from '../../interfaces/Product';
 import { CartService } from '../../services/cart.service';
 

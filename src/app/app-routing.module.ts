@@ -4,12 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 import { ShoppingCartComponent } from './shop/shopping-cart/shopping-cart.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'shop', component: ShopComponent},
+  { path: 'home', component: HomeComponent },
+  { path: 'shop', component: ShopComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'cart', component: ShoppingCartComponent}
+  { path: 'cart', component: ShoppingCartComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
