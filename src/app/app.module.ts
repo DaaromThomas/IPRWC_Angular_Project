@@ -8,6 +8,7 @@ import { HomeModule } from './home/home.module';
 import { ShopModule } from './shop/shop.module';
 import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,11 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     HomeModule,
     ShopModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
   ],
   bootstrap: [AppComponent]
 })

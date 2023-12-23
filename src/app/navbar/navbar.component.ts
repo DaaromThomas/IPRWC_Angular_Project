@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Product } from '../interfaces/Product';
-import { ProductServiceService } from '../services/product-service.service';
 import { CartService } from '../services/cart.service';
 import { AppComponent } from '../app.component';
+import { ProductInShoppingCart } from '../interfaces/ProductInShoppingCart';
 
 @Component({
   selector: 'app-navbar',
@@ -11,23 +11,31 @@ import { AppComponent } from '../app.component';
 })
 export class NavbarComponent {
 
-  productsInShoppingCart: Product[] = [];
+  productsInShoppingCart: ProductInShoppingCart[] = [];
   numberOfProductsInCart: number = 0;
 
   constructor(private cartService: CartService, private appComponent: AppComponent){}
 
-  ngOnInit(){
+  ngOnInit() {
     this.cartService
       .all()
-      .subscribe((data: Product[]) => {
+      .subscribe((data: ProductInShoppingCart[]) => {
         this.productsInShoppingCart = data;
-        this.numberOfProductsInCart = this.productsInShoppingCart.length;
+  
+        this.numberOfProductsInCart = this.calculateTotalQuantity(this.productsInShoppingCart);
       });
+  }
+  
+  private calculateTotalQuantity(cartItems: ProductInShoppingCart[]): number {
+    let baseNumber: number = 0;
+    for(let index in cartItems){
+      let cartItem = cartItems[index];
+      baseNumber = baseNumber + Number(cartItem.quantity);
+    }
+    return baseNumber;
   }
 
   setLogin(){
     this.appComponent.setShopping(false);
   }
-
-
 }

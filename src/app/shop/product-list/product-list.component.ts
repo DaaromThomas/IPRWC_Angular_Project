@@ -19,6 +19,7 @@ export class ProductListComponent {
   }
 
   ngOnInit(){
+    this.productService.getAllProducts();
     this.productService
     .all()
     .subscribe((data: Product[]) => {

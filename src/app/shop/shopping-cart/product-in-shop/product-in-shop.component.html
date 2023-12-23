@@ -4,4 +4,7 @@
         <p>Cost: {{ product.cost}}</p>
     </div>
     <button (click)="deleteThisFromCart()">Delete</button>
+    <select name="Quantity" [(ngModel)]="quantity" (input)="changeQuantity(quantity)" (change)="changeQuantity(quantity)">
+        <option *ngFor="let i of numberArray">{{i}}</option>
+    </select>      
 </div>
