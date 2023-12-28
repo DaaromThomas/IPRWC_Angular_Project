@@ -3,6 +3,9 @@ import { Product } from '../interfaces/Product';
 import { CartService } from '../services/cart.service';
 import { AppComponent } from '../app.component';
 import { ProductInShoppingCart } from '../interfaces/ProductInShoppingCart';
+import { Account } from '../interfaces/Account';
+import { LoginService } from '../services/login.service';
+import { LoginStateService } from '../services/login-state.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,16 +17,37 @@ export class NavbarComponent {
   productsInShoppingCart: ProductInShoppingCart[] = [];
   numberOfProductsInCart: number = 0;
 
-  constructor(private cartService: CartService, private appComponent: AppComponent){}
+  account: Account | null = null;
+  loggedIn_: boolean = false;
+
+  constructor(
+    private cartService: CartService, 
+    private loginService: LoginService,
+    private appComponent: AppComponent,
+    private loginStateService: LoginStateService
+  ) {}
 
   ngOnInit() {
-    this.cartService
-      .all()
-      .subscribe((data: ProductInShoppingCart[]) => {
-        this.productsInShoppingCart = data;
-  
-        this.numberOfProductsInCart = this.calculateTotalQuantity(this.productsInShoppingCart);
-      });
+    this.loginStateService.getLoggedIn().subscribe((value) => {
+      this.loggedIn = value;
+    });
+
+    this.loginService
+      .observeAccount()
+      .subscribe(
+      (account: Account | null) => {
+        this.account = account;
+        console.log('Received account:', this.account);
+      },
+      (error) => {
+        console.error('Error while observing account:', error);
+      }
+    );
+
+    this.cartService.all().subscribe((data: ProductInShoppingCart[]) => {
+      this.productsInShoppingCart = data;
+      this.numberOfProductsInCart = this.calculateTotalQuantity(this.productsInShoppingCart);
+    });
   }
   
   private calculateTotalQuantity(cartItems: ProductInShoppingCart[]): number {
@@ -37,5 +61,13 @@ export class NavbarComponent {
 
   setLogin(){
     this.appComponent.setShopping(false);
+  }
+
+  public get loggedIn(){
+    return this.loggedIn_;
+  }
+
+  public set loggedIn(value: boolean){
+    this.loggedIn_ = value;
   }
 }

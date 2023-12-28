@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="navbar-item">
-            <div class="login-button">
+            <div class="login-button" *ngIf="!loggedIn_">
                 <a [routerLink]="['login']" class="route" (click)="setLogin()">aanmelden</a>
             </div>
         </div>

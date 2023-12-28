@@ -9,12 +9,14 @@ import { ShopModule } from './shop/shop.module';
 import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
+    RegistrationComponent,
     ],
   imports: [
     AppRoutingModule,
