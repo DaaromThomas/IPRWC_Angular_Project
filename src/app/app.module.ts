@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RegistrationComponent } from './registration/registration.component';
     NavbarComponent,
     LoginComponent,
     RegistrationComponent,
+    AdminComponent,
     ],
   imports: [
     AppRoutingModule,

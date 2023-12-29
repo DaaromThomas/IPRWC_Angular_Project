@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
 
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less'],
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrl: './admin.component.less'
 })
-export class HomeComponent {
+export class AdminComponent {
 
   constructor(private appComponent: AppComponent){}
 
   ngOnInit(){
-    this.appComponent.setShopping(true);
+    this.appComponent.setShopping(false);
   }
 
 }

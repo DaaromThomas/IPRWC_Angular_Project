@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Product } from '../../interfaces/Product';
 import { ProductServiceService } from '../../services/product-service.service';
 import { CartService } from '../../services/cart.service';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-product-list',
@@ -14,11 +15,14 @@ export class ProductListComponent {
   products: Product[] = [
   ];
 
-  constructor(private productService: ProductServiceService, private cartService: CartService){
-    
-  }
+  constructor(
+    private productService: ProductServiceService, 
+    private cartService: CartService,
+    private appComponent: AppComponent
+  ){}
 
   ngOnInit(){
+    this.appComponent.setShopping(true);
     this.productService.getAllProducts();
     this.productService
     .all()

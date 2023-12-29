@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interfaces/Product';
 import { ActivatedRoute } from '@angular/router';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-product-details',
@@ -13,7 +14,11 @@ export class ProductDetailsComponent {
 
   private productId: any;
 
-  constructor(private activatedRoute: ActivatedRoute){
+  constructor(private activatedRoute: ActivatedRoute, private appComponent: AppComponent){}
+
+  ngOnInit(){
+    this.appComponent.setShopping(true);
+
     this.activatedRoute.paramMap.subscribe( paramMap => {
       this.productId = paramMap.get('id');
   })

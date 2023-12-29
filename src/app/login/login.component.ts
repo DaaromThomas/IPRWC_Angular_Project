@@ -22,6 +22,10 @@ export class LoginComponent {
     private loginStateService: LoginStateService
   ) {}
 
+  ngOnInit(){
+    this.appComponent.setShopping(false);
+  }
+
   public login(username: string, password: string): void {
     this.loginService.login(username, password)
       .subscribe(
@@ -33,9 +37,8 @@ export class LoginComponent {
             this.appComponent.setShopping(true);
             this.router.navigate(['shop']);
           }else if(account.role === RoleType.Admin){
-            this.appComponent.setShopping(true);
-            this.router.navigate(['cart'])
-            // TODO: Navigate to admin screen
+            this.appComponent.setShopping(false);
+            this.router.navigate(['admin'])
           }
         },
         (error) => {

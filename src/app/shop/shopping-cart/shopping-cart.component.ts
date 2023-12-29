@@ -3,6 +3,7 @@ import { Product } from '../../interfaces/Product';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
 import { ProductInShoppingCart } from '../../interfaces/ProductInShoppingCart';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -14,11 +15,15 @@ export class ShoppingCartComponent {
   numberOfProductsInCart: number = 0;
   public cost: number = 0;
 
-  constructor(private cartService: CartService, private orderService: OrderService) {
-    
-  }
+  constructor(
+    private cartService: CartService, 
+    private orderService: OrderService,
+    private appComponent: AppComponent
+  ) {}
 
   ngOnInit() {
+    this.appComponent.setShopping(true);
+
     this.cartService
       .all()
       .subscribe((data: ProductInShoppingCart[]) => {

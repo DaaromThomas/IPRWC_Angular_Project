@@ -3,6 +3,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistrationService } from '../services/registration.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-registration',
@@ -14,8 +15,13 @@ export class RegistrationComponent {
 
   constructor(
     private registrationService: RegistrationService,
-    private router: Router
+    private router: Router,
+    private appComponent: AppComponent
   ) {}
+
+  ngOnInit(){
+    this.appComponent.setShopping(false);
+  }
 
   register(username: string, password: string): void {
     this.registrationService.register(username, password)
