@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/Product';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class ProductServiceService {
     return this.http.get<Product[]>(this.baseUrl + "/products");
   }
 
-  getAllProducts() {
+  public getAllProducts() {
     this.all().subscribe(
       data => {
         this.products = data;
@@ -25,5 +25,25 @@ export class ProductServiceService {
         console.error('Error fetching products:', error);
       }
     );
+  }
+
+  public addProduct(name: string, cost: number, imagedata: string){
+    const product: Product = new Product(this.generateUUID(), name, imagedata, cost)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+ 
+    this.http.post(this.baseUrl + "/products", product, { headers })
+      .subscribe(data => {
+        console.log(data);
+      });  
+  }
+
+  generateUUID(): string {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = (Math.random() * 16) | 0,
+        v = c === 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
   }
 }

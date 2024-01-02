@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,12 @@ import { AdminComponent } from './admin/admin.component';
     NavbarComponent,
     LoginComponent,
     RegistrationComponent,
-    AdminComponent,
     ],
   imports: [
     AppRoutingModule,
     HomeModule,
     ShopModule,
+    AdminModule,
     CommonModule,
     HttpClientModule
   ],

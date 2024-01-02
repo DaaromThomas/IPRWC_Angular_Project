@@ -1,12 +1,10 @@
-import { Product } from "./Product";
 import { ProductInShoppingCart } from "./ProductInShoppingCart";
 
-export class Order{
+export class Order {
     constructor(
-        private id: string,
-        private name: string,
-        private customer: string,
+        public id: string,
+        public name: string,
+        public customer: string,
         public products: ProductInShoppingCart[]
-    ){}
-
+    ) {}
 }
