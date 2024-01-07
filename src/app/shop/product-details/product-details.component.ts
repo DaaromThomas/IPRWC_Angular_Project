@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interfaces/Product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from '../../app.component';
+import { DetailsService } from './details.service';
 
 @Component({
   selector: 'app-product-details',
@@ -9,22 +10,21 @@ import { AppComponent } from '../../app.component';
   styleUrl: './product-details.component.less'
 })
 export class ProductDetailsComponent {
-  @Input() selectedProduct!: Product;
-  @Output() goBack = new EventEmitter<void>();
+  public product!: Product;
 
-  private productId: any;
-
-  constructor(private activatedRoute: ActivatedRoute, private appComponent: AppComponent){}
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private appComponent: AppComponent,
+    private detailsService: DetailsService,
+    private router: Router
+    ){}
 
   ngOnInit(){
     this.appComponent.setShopping(true);
-
-    this.activatedRoute.paramMap.subscribe( paramMap => {
-      this.productId = paramMap.get('id');
-  })
+    this.product = this.detailsService.product;
   }
 
   goToProductsScreen(): void {
-    this.goBack.emit();
+    this.router.navigate(['/shop']);
   }
 }

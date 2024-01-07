@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../interfaces/Product';
 import { CartService } from '../../services/cart.service';
+import { Router } from '@angular/router';
+import { DetailsService } from '../product-details/details.service';
 
 @Component({
   selector: 'app-product',
@@ -10,11 +12,24 @@ import { CartService } from '../../services/cart.service';
 export class ProductComponent {
   @Input() product!: Product;
 
-  constructor(private cartService: CartService){}
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private detailsService: DetailsService
+    ){}
 
 
   deleteThisFromCart(){
     this.cartService.removeFromCart(this.product);
+  }
+
+  addToCart(product: Product){
+    this.cartService.addToCart(product);
+  }
+
+  selectProduct(product: Product): void {
+    this.detailsService.product = product;
+    this.router.navigate(['/details']);
   }
 
 

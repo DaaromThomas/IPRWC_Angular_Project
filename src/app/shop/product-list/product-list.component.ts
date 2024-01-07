@@ -16,8 +16,7 @@ export class ProductListComponent {
   ];
 
   constructor(
-    private productService: ProductServiceService, 
-    private cartService: CartService,
+    private productService: ProductServiceService,
     private appComponent: AppComponent
   ){}
 
@@ -29,13 +28,5 @@ export class ProductListComponent {
     .subscribe((data: Product[]) => {
       this.products = data;
     })
-  }
-
-  selectProduct(product: any): void {
-    this.productSelected.emit(product);
-  }
-
-  addToCart(product: Product){
-    this.cartService.addToCart(product);
   }
 }
