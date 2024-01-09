@@ -36,6 +36,7 @@ import { InterceptorModule } from './Interceptors/Interceptor.module';
   ],
   providers: [
     provideClientHydration(),
+    NavbarComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,11 @@
 <div class="container">
     <div class="grid-column-1">
         <div class="navbar-item">
+            <div class="button"  *ngIf="isAdmin">
+                <a [routerLink]="['admin']" class="route">Admin</a>
+            </div>
+        </div>
+        <div class="navbar-item">
             <div class="button">
                 <a [routerLink]="['home']" routerLinkActive="active" class="route">Home</a>
             </div>

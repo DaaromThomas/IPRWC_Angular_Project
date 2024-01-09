@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const account = this.loginService.account;
+    const account = this.loginService.Gaccount;
 
     if (account && account.role === RoleType.Admin) {
       return true;

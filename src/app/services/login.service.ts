@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Account } from '../interfaces/Account';
 
@@ -26,18 +26,20 @@ export class LoginService {
           return throwError(error);
         })
       );
+
+    
   }
 
   public observeAccount(): Observable<Account>{
     return this.account$.asObservable();
   }
 
-  set account(account: Account){
+  set Saccount(account: Account){
     this.account_ = account;
     this.account$.next(this.account_);
   }
 
-  get account(){
+  get Gaccount(){
     return this.account_;
   }
 }

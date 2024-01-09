@@ -14,7 +14,7 @@ export class AppComponent {
     this.shopping = value;
   }
 
-  getShopping(value: boolean){
-    this.shopping = value;
+  getShopping(){
+    return this.shopping;
   }
 }

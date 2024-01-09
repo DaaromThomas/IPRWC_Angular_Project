@@ -18,8 +18,8 @@ export class Interceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     
-    if (this.loginService.account !== null && this.loginService.account !== undefined) {
-        const accountId = this.loginService.account.id;
+    if (this.loginService.Gaccount !== null && this.loginService.Gaccount !== undefined) {
+        const accountId = this.loginService.Gaccount.id;
       const modifiedRequest = request.clone({
         setHeaders: {
           'X-Account-Id': accountId,

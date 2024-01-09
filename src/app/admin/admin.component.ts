@@ -4,6 +4,8 @@ import { ProductServiceService } from '../services/product-service.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OrderService } from '../services/order.service';
 import { Order } from '../interfaces/Order';
+import { Router } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-admin',
@@ -11,20 +13,27 @@ import { Order } from '../interfaces/Order';
   styleUrl: './admin.component.less'
 })
 export class AdminComponent {
+
   orders: Order[] = [];
 
   constructor(
     private appComponent: AppComponent,
     private productService: ProductServiceService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private router: Router
   ){}
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.appComponent.setShopping(false);
+    });
+  }
 
   ngOnInit(){
     this.orderService.placedOrders()
       .subscribe((orders) => {
         this.orders = orders;
       });
-    this.appComponent.setShopping(false);
     this.orderService.getOrders();
   }
 
@@ -33,4 +42,8 @@ export class AdminComponent {
     this.productService.addProduct(name, cost, imagedata);
   }
 
+  goBack() {
+    this.appComponent.setShopping(true);
+    this.router.navigate(['home']);
+  }
 }

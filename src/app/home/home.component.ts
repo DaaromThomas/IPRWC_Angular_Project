@@ -9,10 +9,4 @@ import { AppComponent } from '../app.component';
 })
 export class HomeComponent {
 
-  constructor(private appComponent: AppComponent){}
-
-  ngOnInit(){
-    this.appComponent.setShopping(true);
-  }
-
 }

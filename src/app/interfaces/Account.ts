@@ -2,10 +2,10 @@ import { RoleType } from "./RoleType";
 
 export class Account{
     constructor(
-        private id_: string,
-        private username_: string,
-        private password_: string,
-        private role_: RoleType
+        public id_: string,
+        public username_: string,
+        public password_: string,
+        public role_: RoleType
     ){}
 
     get id(){
