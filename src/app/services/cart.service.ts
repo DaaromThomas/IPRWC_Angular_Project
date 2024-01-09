@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Product } from '../interfaces/Product';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Order } from '../interfaces/Order';
 import { ProductInShoppingCart } from '../interfaces/ProductInShoppingCart';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,15 @@ export class CartService {
   private costOfProducts: number = 0;
   private costOfProducts$ = new BehaviorSubject<number>(0);
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        this.productsInCart = JSON.parse(storedCart);
+        this.productsInCart$.next(this.productsInCart);
+      }
+    }
+  }
 
   public all(): Observable<ProductInShoppingCart[]> {
     return this.productsInCart$.asObservable();
@@ -37,6 +46,7 @@ export class CartService {
 
     this.productsInCart$.next(this.productsInCart);
     this.costOfProducts$.next(this.costOfProducts);
+    localStorage.setItem('cart', JSON.stringify(this.productsInCart));
   }
 
   changeQuantity(product: Product, newQuantity: number){
@@ -53,6 +63,8 @@ export class CartService {
 
     this.productsInCart$.next(this.productsInCart);
     this.costOfProducts$.next(this.costOfProducts);
+
+    localStorage.setItem('cart', JSON.stringify(this.productsInCart));
   }
 
   removeFromCart(product: Product) {
@@ -68,10 +80,18 @@ export class CartService {
 
     this.productsInCart$.next(this.productsInCart);
     this.costOfProducts$.next(this.costOfProducts);
+
+    localStorage.setItem('cart', JSON.stringify(this.productsInCart));
   }
 
-  public createOrder(){
-    // const order = new Order(1, 'TestOrder', 'TestCustomer', this.productsInCart)
-
+  emptyCart() {
+    this.productsInCart = [];
+    this.costOfProducts = 0;
+  
+    this.productsInCart$.next(this.productsInCart);
+    this.costOfProducts$.next(this.costOfProducts);
+  
+    localStorage.removeItem('cart');
   }
+
 }

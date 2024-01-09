@@ -4,6 +4,7 @@ import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
 import { ProductInShoppingCart } from '../../interfaces/ProductInShoppingCart';
 import { AppComponent } from '../../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,7 +19,8 @@ export class ShoppingCartComponent {
   constructor(
     private cartService: CartService, 
     private orderService: OrderService,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -48,7 +50,6 @@ export class ShoppingCartComponent {
   }
 
   orderProducts(){
-    console.log("orderProducts(), products" + this.productsInCart.length)
-    this.orderService.createOrder(this.productsInCart, "The current customer" /* TODO: fix the customer */);
+    this.router.navigate(['/order']);
   }
 }

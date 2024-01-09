@@ -5,6 +5,8 @@ import { Product } from '../interfaces/Product';
 import { RequestService } from './request.service';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { ProductInShoppingCart } from '../interfaces/ProductInShoppingCart';
+import { CartService } from './cart.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +17,22 @@ export class OrderService {
   private baseURL: string = "http://localhost:8080";
 
 
-  constructor(private requestService: RequestService, private http: HttpClient) { }
+  constructor(private http: HttpClient, private cartService: CartService, private router: Router) { }
 
   public placedOrders(): Observable<Order[]>{
     return this.orders$.asObservable()
   }
 
-  private saveOrder(order: Order) {
+  public saveOrder(order: Order) {
     console.log('Order to be sent:', order);
  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
  
+    this.cartService.emptyCart();
     this.http.post(this.baseURL + "/orders", order, { headers }).subscribe();
+    this.router.navigate(['/home']);
  }
 
   public getOrders(){
@@ -44,13 +48,6 @@ export class OrderService {
   );
   }
  
-
- public createOrder(data: ProductInShoppingCart[], customer: string): void {
-  const order: Order = new Order(this.generateUUID(), 'Product order', customer, data);
-  console.log("createOrder(): Data: ", data)
-  console.log("createOrder(): Order: ", order);
-  this.saveOrder(order);
-}
 
 generateUUID(): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

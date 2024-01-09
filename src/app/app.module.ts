@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
+import { OrderComponent } from './order/order.component';
+import { OrderModule } from './order/order.module';
+import { InterceptorModule } from './Interceptors/Interceptor.module';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +30,9 @@ import { AdminModule } from './admin/admin.module';
     ShopModule,
     AdminModule,
     CommonModule,
-    HttpClientModule
+    OrderModule,
+    HttpClientModule,
+    InterceptorModule
   ],
   providers: [
     provideClientHydration(),
