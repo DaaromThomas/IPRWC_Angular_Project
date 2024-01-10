@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { ProductListComponent } from './shop/product-list/product-list.component';
 import { OrderComponent } from './order/order.component';
+import { OrderGuard } from './order/order.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,7 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent},
   { path: 'details', component: ProductDetailsComponent},
-  { path: 'order', component: OrderComponent},
+  { path: 'order', component: OrderComponent, canActivate: [OrderGuard]},
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
 ];
 

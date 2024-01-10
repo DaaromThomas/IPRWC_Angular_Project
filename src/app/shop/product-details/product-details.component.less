@@ -1,10 +1,50 @@
-@navbar-height: 100px;
-
-.container {
-    height: calc(100vh - @navbar-height);
+.product-details-container {
+    height: calc(100vh - 100px);
     width: 100%;
-
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: black; /* Set your background color */
+    /* Add other styling if needed */
+}
+
+.back-button {
+    font-size: 16px;
+    background: #e2001a;
+    border: 1px solid #e2001a;
+    border-radius: 6px; /* Set your button color */
+    color: #fff; /* Set your button text color */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+
+    &:hover {
+        background: white;
+        color: #e2001a; /* Set your button hover color */
+    }
+}
+
+.product-details {
+    text-align: center;
+
+    .product-name {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: white; /* Set your heading text color */
+    }
+
+    .product-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px; /* Set your image border radius */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Set your image box shadow */
+    }
+
+    .product-cost {
+        font-size: 20px;
+        margin-top: 10px;
+        color: white; /* Set your cost text color */
+    }
 }

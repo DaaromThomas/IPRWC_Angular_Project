@@ -35,6 +35,10 @@ export class NavbarComponent{
       this.isAdmin = true;
       this.cdr.detectChanges();
     }
+    if(this.loginService.Gaccount){
+      this.loggedIn = true;
+      this.cdr.detectChanges();
+    }
   }
 
   ngOnInit() {
@@ -47,6 +51,7 @@ export class NavbarComponent{
       .subscribe(
       (account: Account | null) => {
         this.account = account;
+        this.loggedIn_ = true;
       },
       (error) => {
         console.error('Error while observing account:', error);

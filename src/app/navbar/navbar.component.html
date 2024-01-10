@@ -1,7 +1,7 @@
 <div class="container">
     <div class="grid-column-1">
         <div class="navbar-item">
-            <div class="button"  *ngIf="isAdmin">
+            <div class="button" *ngIf="isAdmin">
                 <a [routerLink]="['admin']" class="route">Admin</a>
             </div>
         </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="navbar-item">
             <div class="login-button" *ngIf="!loggedIn_">
-                <a [routerLink]="['login']" class="route" (click)="setLogin()">aanmelden</a>
+                <a [routerLink]="['login']" class="route" (click)="setLogin()">Log in</a>
             </div>
         </div>
     </div>

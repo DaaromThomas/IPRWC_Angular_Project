@@ -30,7 +30,7 @@ export class ProductInShopComponent {
   
   deleteThisFromCart(){
     this.cartService.removeFromCart(this.productData.product);
-    this.quantity -= 1;
+    this.quantity = 0;
   }
 
   fillNumberArray(){

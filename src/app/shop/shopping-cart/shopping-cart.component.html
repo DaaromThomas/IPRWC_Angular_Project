@@ -7,8 +7,10 @@
     <div class="pay">
         <div class="pay-container">
             <div class="info">
-                <p>Artikelen ({{ numberOfProductsInCart }}): €{{cost}}</p>
+                <p>Artikelen ({{ numberOfProductsInCart }})</p>
+                <p>Kosten: {{cost}}.00</p>
             </div>
+            <p class="error">{{error}}</p>
             <button (click)="orderProducts()">Order</button>
         </div>        
     </div>

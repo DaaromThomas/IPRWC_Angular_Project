@@ -11,9 +11,17 @@ export class LoginService {
   private baseURL: string = 'http://localhost:8080';
 
   private account_!: Account;
-  private account$: Subject<Account> = new Subject<Account>;
+  private account$: Subject<Account> = new Subject<Account>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    if (typeof sessionStorage !== 'undefined') {
+      const storedAccount = sessionStorage.getItem('loggedInAccount');
+      if (storedAccount) {
+        this.account_ = JSON.parse(storedAccount);
+        this.account$.next(this.account_);
+      }
+    }
+  }
 
   login(username: string, password: string): Observable<any> {
     const body = { username, password };
@@ -26,20 +34,22 @@ export class LoginService {
           return throwError(error);
         })
       );
-
-    
   }
 
-  public observeAccount(): Observable<Account>{
+  public observeAccount(): Observable<Account> {
     return this.account$.asObservable();
   }
 
-  set Saccount(account: Account){
+  set Saccount(account: Account) {
     this.account_ = account;
     this.account$.next(this.account_);
+
+    // Store account in sessionStorage
+    sessionStorage.setItem('loggedInAccount', JSON.stringify(account));
   }
 
-  get Gaccount(){
+  get Gaccount() {
+    // Retrieve account from sessionStorage
     return this.account_;
   }
 }

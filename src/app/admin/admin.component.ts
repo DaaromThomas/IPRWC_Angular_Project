@@ -13,8 +13,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './admin.component.less'
 })
 export class AdminComponent {
-
-  orders: Order[] = [];
+  public productInfo: String = '';
+  public orders: Order[] = [];
 
   constructor(
     private appComponent: AppComponent,
@@ -24,6 +24,7 @@ export class AdminComponent {
   ){}
 
   ngAfterViewInit() {
+    this.productInfo = '';
     setTimeout(() => {
       this.appComponent.setShopping(false);
     });
@@ -40,6 +41,7 @@ export class AdminComponent {
   addProduct(name: string, costString: string, imagedata: string){
     const cost = Number(costString);
     this.productService.addProduct(name, cost, imagedata);
+    this.productInfo = 'Product succesfully added';  
   }
 
   goBack() {

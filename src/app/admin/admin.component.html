@@ -2,6 +2,7 @@
     <div class="add-product">
         <div class="add-product-component">
           <h2>Add Product</h2>
+          <p>{{productInfo}}</p>
           <div class="inputs">
             <input type="text" id="productName" placeholder="Product Name" #name required>
       
@@ -28,6 +29,8 @@
           <div class="products" *ngFor="let productInShoppingCart of order.products; let i = index">
             <p>{{productInShoppingCart.product.name}}: {{productInShoppingCart.quantity}}</p>
           </div>
+          <p>Customer: {{order.customerName}}</p>
+          <p>Location: {{order.address}}</p>
         </div>
       </div>      
   </div>  

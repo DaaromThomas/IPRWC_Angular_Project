@@ -1,8 +1,9 @@
-<div class="container">
-    <button (click)="goToProductsScreen()">Go back</button>
-    <div *ngIf="product">
-        <h2>{{ product.name }}</h2>
-        <img [src]="product.imageData" alt="niks">
-        <h2>€{{ product.cost}}</h2>
+<div class="product-details-container">
+    <button class="back-button" (click)="goToProductsScreen()">Go back</button>
+
+    <div *ngIf="product" class="product-details">
+        <h1 class="product-name">{{ product.name }}</h1>
+        <img class="product-image" [src]="product.imageData" alt="{{ product.name }} Image">
+        <h2 class="product-cost">€{{ product.cost }}</h2>
     </div>
 </div>

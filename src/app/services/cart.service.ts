@@ -18,9 +18,16 @@ export class CartService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
       const storedCart = localStorage.getItem('cart');
+      const storedTotalCost = localStorage.getItem('totalCost');
+
       if (storedCart) {
         this.productsInCart = JSON.parse(storedCart);
         this.productsInCart$.next(this.productsInCart);
+      }
+
+      if (storedTotalCost) {
+        this.costOfProducts = parseFloat(storedTotalCost);
+        this.costOfProducts$.next(this.costOfProducts);
       }
     }
   }
@@ -35,18 +42,21 @@ export class CartService {
 
   addToCart(product: Product) {
     const itemInCart = this.productsInCart.find((cartItem) => cartItem.product === product);
-
-    if(itemInCart){
-      itemInCart.quantity ++;
-    }else{
+  
+    if (itemInCart) {
+      itemInCart.quantity++;
+    } else {
       this.productsInCart.push(new ProductInShoppingCart(product, 1))
     }
-
+  
     this.costOfProducts += product.cost;
-
+  
     this.productsInCart$.next(this.productsInCart);
     this.costOfProducts$.next(this.costOfProducts);
+  
     localStorage.setItem('cart', JSON.stringify(this.productsInCart));
+    localStorage.setItem('totalCost', JSON.stringify(this.costOfProducts)); // Save total cost
+    console.log(localStorage.getItem('cart'));
   }
 
   changeQuantity(product: Product, newQuantity: number){
@@ -65,6 +75,7 @@ export class CartService {
     this.costOfProducts$.next(this.costOfProducts);
 
     localStorage.setItem('cart', JSON.stringify(this.productsInCart));
+    localStorage.setItem('totalCost', JSON.stringify(this.costOfProducts)); // Save total cost
   }
 
   removeFromCart(product: Product) {
@@ -82,6 +93,7 @@ export class CartService {
     this.costOfProducts$.next(this.costOfProducts);
 
     localStorage.setItem('cart', JSON.stringify(this.productsInCart));
+    localStorage.setItem('totalCost', JSON.stringify(this.costOfProducts)); // Save total cost
   }
 
   emptyCart() {
@@ -92,6 +104,15 @@ export class CartService {
     this.costOfProducts$.next(this.costOfProducts);
   
     localStorage.removeItem('cart');
+    localStorage.removeItem('totalCost'); // Remove total cost when emptying the cart
   }
 
+  public hasProductsInCart(){
+    if(this.productsInCart.length !== 0){
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
+

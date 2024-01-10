@@ -1,7 +1,7 @@
 <div class="order-form-container">
     <h2>Order Information</h2>
   
-    <form (submit)="submitOrder(name.value, email.value, address.value)">
+    <form (submit)="submitOrder(name.value, email.value, address.value)" class="form">
       <div class="form-group">
         <label for="fullName">Full Name:</label>
         <input type="text" id="fullName" name="fullName" #name required>

@@ -24,10 +24,6 @@ export class LoginComponent {
     private navbarComponent: NavbarComponent
   ) {}
 
-  ngOnInit(){
-    this.appComponent.setShopping(false);
-  }
-
   public login(username: string, password: string): void {
     this.loginService.login(username, password)
       .subscribe(
