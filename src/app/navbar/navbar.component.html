@@ -1,5 +1,6 @@
 <div class="container">
     <div class="grid-column-1">
+        <p *ngIf="loggedIn_" class="accountName">Account: {{username}}</p>
         <div class="navbar-item">
             <div class="button" *ngIf="isAdmin">
                 <a [routerLink]="['admin']" class="route">Admin</a>
@@ -25,10 +26,11 @@
                 <a [routerLink]="['cart']" routerLinkActive="active" class="route">Cart ({{numberOfProductsInCart}})</a>
             </div>
         </div>
-        <div class="navbar-item">
-            <div class="login-button" *ngIf="!loggedIn_">
-                <a [routerLink]="['login']" class="route" (click)="setLogin()">Log in</a>
-            </div>
+        <div class="log-button" *ngIf="!loggedIn_">
+            <a [routerLink]="['login']" class="route" (click)="setLogin()">Log in</a>
+        </div>
+        <div class="log-button" *ngIf="loggedIn_">
+            <a [routerLink]="['/home']" class="route" (click)="logOut()">Log out</a>
         </div>
     </div>
 </div>

@@ -29,6 +29,11 @@ export class CartService {
         this.costOfProducts = parseFloat(storedTotalCost);
         this.costOfProducts$.next(this.costOfProducts);
       }
+
+      if(this.productsInCart.length === 0){
+        this.costOfProducts = 0;
+        this.costOfProducts$.next(this.costOfProducts);
+      }
     }
   }
 
@@ -43,6 +48,7 @@ export class CartService {
   addToCart(product: Product) {
     const itemInCart = this.productsInCart.find((cartItem) => cartItem.product === product);
   
+    
     if (itemInCart) {
       itemInCart.quantity++;
     } else {
@@ -80,21 +86,17 @@ export class CartService {
 
   removeFromCart(product: Product) {
     const index = this.productsInCart.findIndex((cartItem) => cartItem.product === product);
-    const productInCart = this.productsInCart[index];
-    productInCart.quantity--;
 
-    if(productInCart.quantity <= 0){
-      this.productsInCart.splice(index, 1);
-    }
-    
-    this.costOfProducts -= product.cost;
+    this.costOfProducts -= product.cost * this.productsInCart[index].quantity;
+    this.productsInCart.splice(index);
 
-    this.productsInCart$.next(this.productsInCart);
+    this.productsInCart$.next([...this.productsInCart]);
     this.costOfProducts$.next(this.costOfProducts);
 
     localStorage.setItem('cart', JSON.stringify(this.productsInCart));
-    localStorage.setItem('totalCost', JSON.stringify(this.costOfProducts)); // Save total cost
+    localStorage.setItem('totalCost', JSON.stringify(this.costOfProducts));
   }
+
 
   emptyCart() {
     this.productsInCart = [];
@@ -104,7 +106,7 @@ export class CartService {
     this.costOfProducts$.next(this.costOfProducts);
   
     localStorage.removeItem('cart');
-    localStorage.removeItem('totalCost'); // Remove total cost when emptying the cart
+    localStorage.removeItem('totalCost');
   }
 
   public hasProductsInCart(){

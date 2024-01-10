@@ -10,8 +10,8 @@ import { Account } from '../interfaces/Account';
 export class LoginService {
   private baseURL: string = 'http://localhost:8080';
 
-  private account_!: Account;
-  private account$: Subject<Account> = new Subject<Account>();
+  private account_!: Account | null;
+  private account$: Subject<any> = new Subject<any>();
 
   constructor(private http: HttpClient) {
     if (typeof sessionStorage !== 'undefined') {
@@ -36,7 +36,14 @@ export class LoginService {
       );
   }
 
-  public observeAccount(): Observable<Account> {
+  logout() {
+    this.account_ = null;
+    this.account$.next(this.account_);
+
+    sessionStorage.removeItem('loggedInAccount');
+  }
+
+  public observeAccount(): Observable<Account | null> {
     return this.account$.asObservable();
   }
 
@@ -44,12 +51,10 @@ export class LoginService {
     this.account_ = account;
     this.account$.next(this.account_);
 
-    // Store account in sessionStorage
     sessionStorage.setItem('loggedInAccount', JSON.stringify(account));
   }
 
   get Gaccount() {
-    // Retrieve account from sessionStorage
     return this.account_;
   }
 }

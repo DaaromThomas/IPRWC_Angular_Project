@@ -14,12 +14,9 @@ export class AppComponent {
   constructor(private router: Router){}
 
   ngOnInit() {
-    // Subscribe to router events
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Check if the current route is 'login'
-        if (event.url === '/login') {
-          // Set shopping to false when navigating to the login page
+        if (event.url === '/login' || event.url === '/register') {
           this.setShopping(false);
         }
       }

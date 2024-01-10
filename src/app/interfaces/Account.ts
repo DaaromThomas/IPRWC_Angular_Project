@@ -3,7 +3,7 @@ import { RoleType } from "./RoleType";
 export class Account{
     constructor(
         public id_: string,
-        public username_: string,
+        public name: string,
         public password_: string,
         public role_: RoleType
     ){}
@@ -16,13 +16,7 @@ export class Account{
         this.id_ = newId;
     }
 
-    get username(){
-        return this.username_;
-    }
-
-    set username(newUsername: string){
-        this.username_ = newUsername;
-    }
+    
 
     get password(){
         return this.password_;

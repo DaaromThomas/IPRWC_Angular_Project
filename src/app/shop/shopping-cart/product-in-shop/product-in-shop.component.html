@@ -5,7 +5,7 @@
     </div>
     <img [src]="product.imageData" alt="">
     <button (click)="deleteThisFromCart()">Delete</button>
-    <select name="Quantity" [(ngModel)]="quantity" (input)="changeQuantity(quantity)" (change)="changeQuantity(quantity)">
+    <select class="button" name="Quantity" [(ngModel)]="quantity" (input)="changeQuantity(quantity)" (change)="changeQuantity(quantity)">
         <option *ngFor="let i of numberArray">{{i}}</option>
     </select>      
 </div>

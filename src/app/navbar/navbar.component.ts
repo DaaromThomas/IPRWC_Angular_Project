@@ -21,25 +21,15 @@ export class NavbarComponent{
   account: Account | null = null;
   loggedIn_: boolean = false;
   isAdmin: boolean = false;
+  username: string | undefined;
 
   constructor(
     private cartService: CartService, 
     private loginService: LoginService,
-    private appComponent: AppComponent,
     private loginStateService: LoginStateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private appComponent: AppComponent
   ) {}
-
-  ngAfterViewInit(): void {
-    if (this.loginService.Gaccount?.role === RoleType.Admin) {
-      this.isAdmin = true;
-      this.cdr.detectChanges();
-    }
-    if(this.loginService.Gaccount){
-      this.loggedIn = true;
-      this.cdr.detectChanges();
-    }
-  }
 
   ngOnInit() {
     this.loginStateService.getLoggedIn().subscribe((value) => {
@@ -47,16 +37,23 @@ export class NavbarComponent{
     });
 
     this.loginService
-      .observeAccount()
-      .subscribe(
-      (account: Account | null) => {
-        this.account = account;
+  .observeAccount()
+  .subscribe(
+    (account: Account | null) => {
+      this.account = account;
+      if (this.account !== null) {
         this.loggedIn_ = true;
-      },
-      (error) => {
-        console.error('Error while observing account:', error);
+        this.isAdmin = this.account.role_ === RoleType.Admin;
+      } else {
+        this.loggedIn_ = false;
+        this.isAdmin = false;
       }
-    );
+      this.cdr.detectChanges();
+    },
+    (error) => {
+      console.error('Error while observing account:', error);
+    }
+  );
 
     this.cartService.all().subscribe((data: ProductInShoppingCart[]) => {
       this.productsInShoppingCart = data;
@@ -64,11 +61,22 @@ export class NavbarComponent{
     });
   }
 
-  
-  
+  ngAfterViewInit(): void {
+    if (this.loginService.Gaccount?.role === RoleType.Admin) {
+      this.loggedIn = true;
+      this.isAdmin = true;
+    }
+    if (this.loginService.Gaccount) {
+      this.loggedIn = true;
+    }
+    this.username = this.loginService.Gaccount?.name;
+    this.cdr.detectChanges();
+
+  }
+
   private calculateTotalQuantity(cartItems: ProductInShoppingCart[]): number {
     let baseNumber: number = 0;
-    for(let index in cartItems){
+    for (let index in cartItems) {
       let cartItem = cartItems[index];
       baseNumber = baseNumber + Number(cartItem.quantity);
     }
@@ -77,6 +85,10 @@ export class NavbarComponent{
 
   setLogin(){
     this.appComponent.setShopping(false);
+  }
+
+  logOut(){
+    this.loginService.logout();
   }
 
   public get loggedIn(){

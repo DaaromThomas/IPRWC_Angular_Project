@@ -19,9 +19,6 @@ export class RegistrationComponent {
     private appComponent: AppComponent
   ) {}
 
-  ngOnInit(){
-    this.appComponent.setShopping(false);
-  }
 
   register(username: string, password: string): void {
     this.registrationService.register(username, password)

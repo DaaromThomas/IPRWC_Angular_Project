@@ -14,7 +14,7 @@ import { OrderService } from '../services/order.service';
 })
 export class OrderComponent {
   private products: ProductInShoppingCart[] = [];
-  private account!: Account;
+  private account!: Account | null;
 
   constructor(
     private cartService: CartService,
@@ -36,8 +36,8 @@ export class OrderComponent {
 
   submitOrder(customerName: String, email: String, address: String) {
     let username = 'Anonymous';
-  if (this.account && this.account.username) {
-    username = this.account.username;
+  if (this.account && this.account.name) {
+    username = this.account.name;
   }
   const order: Order = new Order(
     this.generateUUID(),
