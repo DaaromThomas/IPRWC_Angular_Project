@@ -88,9 +88,8 @@ export class CartService {
     const index = this.productsInCart.findIndex((cartItem) => cartItem.product === product);
 
     this.costOfProducts -= product.cost * this.productsInCart[index].quantity;
-    this.productsInCart.splice(index);
-
-    this.productsInCart$.next([...this.productsInCart]);
+    this.productsInCart.splice(index, 1);
+    this.productsInCart$.next(this.productsInCart);
     this.costOfProducts$.next(this.costOfProducts);
 
     localStorage.setItem('cart', JSON.stringify(this.productsInCart));
