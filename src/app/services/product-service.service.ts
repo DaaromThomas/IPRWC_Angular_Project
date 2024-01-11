@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductServiceService {
-  baseUrl: string = "http://localhost:8080";
+  baseUrl: string = "http://85.215.60.238:8080";
   products: Product[] = [];
 
   constructor(private http: HttpClient) {
@@ -24,7 +24,6 @@ export class ProductServiceService {
         this.products = data;
       },
       error => {
-        console.error('Error fetching products:', error);
       }
     );
   }

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class OrderService {
   private orders: Order[] = [];
   private orders$ = new BehaviorSubject<Order[]>([]);
-  private baseURL: string = "http://localhost:8080";
+  private baseURL: string = "http://85.215.60.238:8080";
 
 
   constructor(private http: HttpClient, private cartService: CartService, private router: Router) { }
@@ -38,7 +38,6 @@ export class OrderService {
         this.orders$.next(this.orders);
       },
       (error) => {
-        console.error('Error creating order:', error);
     }
   );
   }

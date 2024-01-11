@@ -8,7 +8,7 @@ import { Account } from '../interfaces/Account';
   providedIn: 'root'
 })
 export class LoginService {
-  private baseURL: string = 'http://localhost:8080';
+  private baseURL: string = 'http://85.215.60.238:8080';
 
   private account_!: Account | null;
   private account$: Subject<any> = new Subject<any>();
@@ -30,7 +30,6 @@ export class LoginService {
     return this.http.post(this.baseURL + '/login', body, { headers })
       .pipe(
         catchError(error => {
-          console.error('Error during login:', error);
           return throwError(error);
         })
       );
