@@ -12,8 +12,6 @@ export class RequestService {
   post(URL: string, body: any){
     return this.http
       .post(this.baseURL + URL, body)
-      .subscribe((data) => {
-        console.log(data);
-    });
+      .subscribe();
   }
 }

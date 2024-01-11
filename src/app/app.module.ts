@@ -10,9 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
-import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
-import { OrderComponent } from './order/order.component';
 import { OrderModule } from './order/order.module';
 import { InterceptorModule } from './Interceptors/Interceptor.module';
 

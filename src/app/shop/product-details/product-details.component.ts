@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Product } from '../../interfaces/Product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from '../../app.component';
@@ -13,7 +13,6 @@ export class ProductDetailsComponent {
   public product!: Product;
 
   constructor(
-    private activatedRoute: ActivatedRoute, 
     private appComponent: AppComponent,
     private detailsService: DetailsService,
     private router: Router

@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Order } from '../interfaces/Order';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Product } from '../interfaces/Product';
-import { RequestService } from './request.service';
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { ProductInShoppingCart } from '../interfaces/ProductInShoppingCart';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CartService } from './cart.service';
 import { Router } from '@angular/router';
 
@@ -23,9 +20,7 @@ export class OrderService {
     return this.orders$.asObservable()
   }
 
-  public saveOrder(order: Order) {
-    console.log('Order to be sent:', order);
- 
+  public saveOrder(order: Order) { 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -49,13 +44,11 @@ export class OrderService {
   }
  
 
-generateUUID(): string {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    const r = (Math.random() * 16) | 0,
-      v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
-
-
+  generateUUID(): string {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = (Math.random() * 16) | 0,
+        v = c === 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
 }

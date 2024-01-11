@@ -4,7 +4,5 @@ export class Product{
         public name: string,
         public imageData: string,
         public cost: number
-    ){
-
-    }
+    ){}
 }

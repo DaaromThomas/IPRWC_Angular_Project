@@ -34,9 +34,7 @@ export class ProductServiceService {
     });
  
     this.http.post(this.baseUrl + "/products", product, { headers })
-      .subscribe(data => {
-        console.log(data);
-      });  
+      .subscribe();  
   }
 
   generateUUID(): string {

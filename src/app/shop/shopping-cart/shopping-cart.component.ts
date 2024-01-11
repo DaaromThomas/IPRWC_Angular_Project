@@ -1,7 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
-import { Product } from '../../interfaces/Product';
+import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { OrderService } from '../../services/order.service';
 import { ProductInShoppingCart } from '../../interfaces/ProductInShoppingCart';
 import { AppComponent } from '../../app.component';
 import { Router } from '@angular/router';

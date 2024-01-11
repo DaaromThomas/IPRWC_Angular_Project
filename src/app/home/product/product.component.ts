@@ -31,6 +31,4 @@ export class ProductComponent {
     this.detailsService.product = product;
     this.router.navigate(['/details']);
   }
-
-
 }

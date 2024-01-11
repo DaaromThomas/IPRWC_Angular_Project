@@ -1,11 +1,9 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Product } from '../interfaces/Product';
+import { ChangeDetectorRef, Component} from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { AppComponent } from '../app.component';
 import { ProductInShoppingCart } from '../interfaces/ProductInShoppingCart';
 import { Account } from '../interfaces/Account';
 import { LoginService } from '../services/login.service';
-import { LoginStateService } from '../services/login-state.service';
 import { RoleType } from '../interfaces/RoleType';
 
 @Component({
@@ -26,34 +24,29 @@ export class NavbarComponent{
   constructor(
     private cartService: CartService, 
     private loginService: LoginService,
-    private loginStateService: LoginStateService,
     private cdr: ChangeDetectorRef,
     private appComponent: AppComponent
   ) {}
 
   ngOnInit() {
-    this.loginStateService.getLoggedIn().subscribe((value) => {
-      this.loggedIn = value;
-    });
-
     this.loginService
-  .observeAccount()
-  .subscribe(
-    (account: Account | null) => {
-      this.account = account;
-      if (this.account !== null) {
-        this.loggedIn_ = true;
-        this.isAdmin = this.account.role_ === RoleType.Admin;
-      } else {
-        this.loggedIn_ = false;
-        this.isAdmin = false;
+      .observeAccount()
+      .subscribe(
+        (account: Account | null) => {
+        this.account = account;
+        if (this.account !== null) {
+          this.loggedIn_ = true;
+          this.isAdmin = this.account.role === RoleType.Admin;
+        } else {
+          this.loggedIn_ = false;
+          this.isAdmin = false;
+        }
+        this.cdr.detectChanges();
+      },
+      (error) => {
+        console.error('Error while observing account:', error);
       }
-      this.cdr.detectChanges();
-    },
-    (error) => {
-      console.error('Error while observing account:', error);
-    }
-  );
+    );
 
     this.cartService.all().subscribe((data: ProductInShoppingCart[]) => {
       this.productsInShoppingCart = data;

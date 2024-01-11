@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, } from '@angular/core';
 import { Product } from '../../interfaces/Product';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
@@ -31,6 +31,4 @@ export class ProductComponent {
     this.detailsService.product = product;
     this.router.navigate(['/details']);
   }
-
-
 }

@@ -1,5 +1,3 @@
-// registration.component.ts
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistrationService } from '../services/registration.service';
@@ -16,7 +14,6 @@ export class RegistrationComponent {
   constructor(
     private registrationService: RegistrationService,
     private router: Router,
-    private appComponent: AppComponent
   ) {}
 
 
@@ -24,7 +21,6 @@ export class RegistrationComponent {
     this.registrationService.register(username, password)
       .subscribe(
         () => {
-          // Registration successful, navigate to login or any other page
           this.router.navigate(['/login']);
         },
         (error) => {

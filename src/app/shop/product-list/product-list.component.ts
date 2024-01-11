@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Product } from '../../interfaces/Product';
 import { ProductServiceService } from '../../services/product-service.service';
-import { CartService } from '../../services/cart.service';
 import { AppComponent } from '../../app.component';
 
 @Component({

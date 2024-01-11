@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { ProductServiceService } from '../services/product-service.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OrderService } from '../services/order.service';
 import { Order } from '../interfaces/Order';
 import { Router } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-admin',

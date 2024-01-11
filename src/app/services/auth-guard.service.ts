@@ -1,7 +1,5 @@
-// auth.guard.ts
-
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { RoleType } from '../interfaces/RoleType';
 
@@ -11,10 +9,7 @@ import { RoleType } from '../interfaces/RoleType';
 export class AuthGuard implements CanActivate {
   constructor(private loginService: LoginService, private router: Router) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
+  canActivate(): boolean {
     const account = this.loginService.Gaccount;
 
     if (account && account.role === RoleType.Admin) {

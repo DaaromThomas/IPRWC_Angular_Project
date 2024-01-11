@@ -26,8 +26,6 @@ export class Interceptor implements HttpInterceptor {
         },
       });
 
-      console.log(accountId);
-
       return next.handle(modifiedRequest);
     } else {
       return next.handle(request);

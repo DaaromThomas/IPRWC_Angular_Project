@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../../interfaces/Product';
 import { CartService } from '../../../services/cart.service';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ProductInShoppingCart } from '../../../interfaces/ProductInShoppingCart';
 
 @Component({

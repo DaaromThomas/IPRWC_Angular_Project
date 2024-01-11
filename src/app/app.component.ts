@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -11,13 +11,14 @@ export class AppComponent {
 
   public shopping: boolean = true;
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private cdr: ChangeDetectorRef){}
 
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/login' || event.url === '/register') {
           this.setShopping(false);
+          this.cdr.detectChanges();
         }
       }
     });
@@ -25,6 +26,7 @@ export class AppComponent {
 
   setShopping(value: boolean){
     this.shopping = value;
+    this.cdr.detectChanges();
   }
 
   getShopping(){

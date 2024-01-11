@@ -4,7 +4,6 @@ import { CartService } from '../services/cart.service';
 import { ProductInShoppingCart } from '../interfaces/ProductInShoppingCart';
 import { Account } from '../interfaces/Account';
 import { LoginService } from '../services/login.service';
-import e from 'express';
 import { OrderService } from '../services/order.service';
 
 @Component({
@@ -26,29 +25,28 @@ export class OrderComponent {
     this.cartService.all()
       .subscribe((products) => {
         this.products = products;
-      })
+    })
     this.loginService.observeAccount()
       .subscribe((account) => {
         this.account = account;
-      });
-    
+    });
   }
 
   submitOrder(customerName: String, email: String, address: String) {
     let username = 'Anonymous';
-  if (this.account && this.account.name) {
-    username = this.account.name;
-  }
-  const order: Order = new Order(
-    this.generateUUID(),
-    'Product Order',
-    username,
-    this.products,
-    customerName,
-    email,
-    address
-  );
-  this.orderService.saveOrder(order);
+    if (this.account && this.account.name) {
+      username = this.account.name;
+    }
+    const order: Order = new Order(
+      this.generateUUID(),
+      'Product Order',
+      username,
+      this.products,
+      customerName,
+      email,
+      address
+    );
+    this.orderService.saveOrder(order);
   }
 
   generateUUID(): string {

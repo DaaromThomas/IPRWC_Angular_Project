@@ -3,38 +3,38 @@
   display: flex;
   align-items: center;
   margin: 20px;
-  padding: 10px; /* Added padding for spacing */
-  border: 2px solid white; /* Added a border around the container */
-}
+  padding: 10px;
+  border: 2px solid white;
 
-.info {
-  width: 70%;
-  color: white; /* Adjust text color */
-  padding: 10px; /* Added padding for spacing within the info box */
-  font-size: 25px;
-}
+  .info {
+    width: 70%;
+    color: white;
+    padding: 10px;
+    font-size: 25px;
+  }
 
-button,
-select {
-  margin-left: 30px;
-  padding: 12px 20px; /* Adjusted padding for a larger size */
-  font-size: 18px; /* Adjusted font size */
-  border: none;
-  cursor: pointer;
-  background-color: grey;
-  color: white;
-}
+  button,
+  select {
+    margin-left: 30px;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    background-color: grey;
+    color: white;
 
-select {
-  margin-right: 200px;
-}
+    &:hover {
+      background-color: red;
+    }
+  }
 
-img {
-  max-height: 200px;
-  margin-left: auto;
-  display: block;
-}
+  select {
+    margin-right: 200px;
+  }
 
-.button:hover{
-  background-color: red;
+  img {
+    max-height: 200px;
+    margin-left: auto;
+    display: block;
+  }
 }

@@ -1,7 +1,6 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Product } from '../interfaces/Product';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Order } from '../interfaces/Order';
 import { ProductInShoppingCart } from '../interfaces/ProductInShoppingCart';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -47,7 +46,6 @@ export class CartService {
 
   addToCart(product: Product) {
     const itemInCart = this.productsInCart.find((cartItem) => cartItem.product === product);
-  
     
     if (itemInCart) {
       itemInCart.quantity++;
@@ -61,8 +59,7 @@ export class CartService {
     this.costOfProducts$.next(this.costOfProducts);
   
     localStorage.setItem('cart', JSON.stringify(this.productsInCart));
-    localStorage.setItem('totalCost', JSON.stringify(this.costOfProducts)); // Save total cost
-    console.log(localStorage.getItem('cart'));
+    localStorage.setItem('totalCost', JSON.stringify(this.costOfProducts));
   }
 
   changeQuantity(product: Product, newQuantity: number){
@@ -81,7 +78,7 @@ export class CartService {
     this.costOfProducts$.next(this.costOfProducts);
 
     localStorage.setItem('cart', JSON.stringify(this.productsInCart));
-    localStorage.setItem('totalCost', JSON.stringify(this.costOfProducts)); // Save total cost
+    localStorage.setItem('totalCost', JSON.stringify(this.costOfProducts));
   }
 
   removeFromCart(product: Product) {
