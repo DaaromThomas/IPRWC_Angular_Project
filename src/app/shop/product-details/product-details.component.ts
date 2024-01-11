@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Product } from '../../interfaces/Product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from '../../app.component';
-import { DetailsService } from './details.service';
+import { ProductServiceService } from '../../services/product-service.service';
 
 @Component({
   selector: 'app-product-details',
@@ -10,17 +10,22 @@ import { DetailsService } from './details.service';
   styleUrl: './product-details.component.less'
 })
 export class ProductDetailsComponent {
-  public product!: Product;
+  public product!: Product | undefined;
 
   constructor(
     private appComponent: AppComponent,
-    private detailsService: DetailsService,
-    private router: Router
+    private productService: ProductServiceService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
     ){}
 
   ngOnInit(){
+    const productId = this.route.snapshot.params['id'];
+    this.product = this.productService.getProductById(productId); 
+
     this.appComponent.setShopping(true);
-    this.product = this.detailsService.product;
+    this.cdr.detectChanges();
   }
 
   goToProductsScreen(): void {

@@ -15,11 +15,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'shop', component: ProductListComponent },
-  { path: 'products/:id', component: ProductDetailsComponent },
+  { path: 'products', component: ProductDetailsComponent },
   { path: 'cart', component: ShoppingCartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent},
-  { path: 'details', component: ProductDetailsComponent},
+  { path: 'details/:id', component: ProductDetailsComponent},
   { path: 'order', component: OrderComponent, canActivate: [OrderGuard]},
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
 ];

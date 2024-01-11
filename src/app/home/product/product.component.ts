@@ -29,6 +29,6 @@ export class ProductComponent {
 
   selectProduct(product: Product): void {
     this.detailsService.product = product;
-    this.router.navigate(['/details']);
+    this.router.navigate(['/details', product.id]);
   }
 }
