@@ -22,8 +22,6 @@ export class ProductServiceService {
     this.all().subscribe(
       data => {
         this.products = data;
-      },
-      error => {
       }
     );
   }

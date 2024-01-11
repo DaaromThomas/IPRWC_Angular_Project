@@ -42,9 +42,6 @@ export class NavbarComponent{
           this.isAdmin = false;
         }
         this.cdr.detectChanges();
-      },
-      (error) => {
-        console.error('Error while observing account:', error);
       }
     );
 
