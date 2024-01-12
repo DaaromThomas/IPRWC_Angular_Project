@@ -1,23 +1,24 @@
 <div class="order-form-container">
     <h2>Order Information</h2>
   
-    <form (submit)="submitOrder(name.value, email.value, address.value)" class="form">
+    <div class="form">
       <div class="form-group">
         <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" name="fullName" #name required>
+        <input type="text" id="fullName" name="fullName" #name>
       </div>
   
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" #email required>
+        <input type="email" id="email" name="email" #email>
       </div>
   
       <div class="form-group">
         <label for="address">Address:</label>
-        <textarea id="address" name="address" #address required></textarea>
+        <textarea id="address" name="address" #address></textarea>
       </div>
   
-      <button type="submit">Place Order</button>
-    </form>
+      <button type="submit" (click)="submitOrder(name.value, email.value, address.value)">Place Order</button>
+      <label class="error">{{error}}</label>
+    </div>
   </div>
   

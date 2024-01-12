@@ -36,9 +36,7 @@ export class OrderService {
       (data: any) => {
         this.orders = data;
         this.orders$.next(this.orders);
-      },
-      (error) => {
-    }
+      }
   );
   }
  

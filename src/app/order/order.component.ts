@@ -32,21 +32,32 @@ export class OrderComponent {
     });
   }
 
+  error: String = '';
   submitOrder(customerName: String, email: String, address: String) {
-    let username = 'Anonymous';
-    if (this.account && this.account.name) {
-      username = this.account.name;
+    if(customerName != '' || email != '' || address!= ''){
+      let username = 'Anonymous';
+      if (this.account && this.account.name) {
+        username = this.account.name;
+      }
+      const order: Order = new Order(
+        this.generateUUID(),
+        'Product Order',
+        username,
+        this.products,
+        customerName,
+        email,
+        address
+      );
+      this.error = '';
+      this.orderService.saveOrder(order);
+    } else{
+      this.error = 'Not everything is filled in!';
+      setTimeout(() => {
+        this.error = '';
+      }, 2000);
     }
-    const order: Order = new Order(
-      this.generateUUID(),
-      'Product Order',
-      username,
-      this.products,
-      customerName,
-      email,
-      address
-    );
-    this.orderService.saveOrder(order);
+
+    
   }
 
   generateUUID(): string {
