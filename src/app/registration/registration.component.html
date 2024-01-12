@@ -1,0 +1,18 @@
+<div [ngClass]="'registration-container'">
+  <div class="form">
+      <h2>Register</h2>
+      <div #registrationForm>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" ngModel #usernameInput required>
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" ngModel #passwordInput required>
+
+          <button (click)="register(usernameInput.value, passwordInput.value)" type="submit">Register</button>
+      </div>
+
+      <div *ngIf="registrationError" class="error-message">
+          Registration failed. Please try again.
+      </div>
+  </div>
+</div>

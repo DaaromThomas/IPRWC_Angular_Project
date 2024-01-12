@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="grid-column-1">
+        <p *ngIf="loggedIn_" class="accountName">Account: {{username}}</p>
+        <div class="navbar-item">
+            <div class="button" *ngIf="isAdmin">
+                <a [routerLink]="['admin']" class="route">Admin</a>
+            </div>
+        </div>
+        <div class="navbar-item">
+            <div class="button">
+                <a [routerLink]="['home']" routerLinkActive="active" class="route">Home</a>
+            </div>
+        </div>
+    </div>
+    <div class="grid-column-2">
+        <img src="assets/Castore_x_Feyenoord_b3645335-113c-4d50-9eb2-64030b08af0a.avif">
+    </div>
+    <div class="grid-column-3">
+        <div class="navbar-item">
+            <div class="button">
+                <a [routerLink]="['shop']" routerLinkActive="active" class="route">Shop</a>
+            </div>
+        </div>
+        <div class="navbar-item">
+            <div class="button">
+                <a [routerLink]="['cart']" routerLinkActive="active" class="route">Cart ({{numberOfProductsInCart}})</a>
+            </div>
+        </div>
+        <div class="log-button" *ngIf="!loggedIn_">
+            <a [routerLink]="['login']" class="route" (click)="setLogin()">Log in</a>
+        </div>
+        <div class="log-button" *ngIf="loggedIn_">
+            <a [routerLink]="['/home']" class="route" (click)="logOut()">Log out</a>
+        </div>
+    </div>
+</div>

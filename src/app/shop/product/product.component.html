@@ -1,0 +1,11 @@
+<div class="product-container">
+    <div class="product-clickable" (click)="selectProduct(product)">
+        <img [src]="product.imageData" alt="Product Image" class="product-image">
+        <div class="product-info">
+            <p class="product-name">{{ product.name }}</p>
+            <p class="product-cost">€{{ product.cost }}</p>
+        </div>
+    </div>
+    
+    <button class="add-to-cart-button" (click)="addToCart(product)">Add to Cart</button>
+</div>

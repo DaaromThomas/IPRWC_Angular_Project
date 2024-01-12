@@ -1,0 +1,36 @@
+<div class="container">
+  <app-navbar class="app-navbar" *ngIf="shopping === true"></app-navbar>
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+  <footer *ngIf="shopping === true">
+    <div class="footer-content">
+      <div class="contact-info">
+        <h4>Contact Information</h4>
+        <p>Feyenoord Fanshop</p>
+        <p>Stadiumplein 1</p>
+        <p>3077 AK Rotterdam</p>
+        <p>Email: info&#64;feyenoordfanshop.com</p>
+        <p>Phone: +31 (0)10 292 6888</p>
+      </div>
+      
+      <div class="social-media">
+        <h4>Connect with Us</h4>
+        <a href="https://www.facebook.com/Feyenoord" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://twitter.com/feyenoord" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a href="https://www.instagram.com/feyenoord" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+      
+      <div class="quick-links">
+        <h4>Quick Links</h4>
+        <a routerLink="/">Home</a>
+        <a routerLink="/shop">Shop</a>
+        <a routerLink="/cart">Cart</a>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2024 Feyenoord Fanshop. All rights reserved.</p>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="add-product">
+        <div class="add-product-component">
+          <h2>Add Product</h2>
+          <p>{{productInfo}}</p>
+          <div class="inputs">
+            <input type="text" id="productName" placeholder="Product Name" #name required>
+      
+            <input type="text" id="productImage" placeholder="Image URL" #image required>
+      
+            <input type="number" id="productCost" placeholder="Cost" #cost required>
+          </div>
+          <button type="button">Cancel</button>
+          <button type="submit" (click)="addProduct(name.value, cost.value, image.value)">Add Product</button>
+        </div>
+    </div>
+    <div class="div2">
+      <img src="assets\HD-wallpaper-feyenoord-rotterdam.jpg" alt="">
+      <button (click)="goBack()">Go back</button>
+    </div>
+    <div class="div3">
+      <img src="assets/53e9f5d2-c0e3-4f45-aebe-1459b96a56eb.jpeg" alt="">
+    </div>
+    <div class="orders">
+      <h2>Orders</h2>
+      <div class="order-component">
+        <div class="order" *ngFor="let order of orders; let i = index">
+          <p>Name: {{order.name}}</p>
+          <div class="products" *ngFor="let productInShoppingCart of order.products; let i = index">
+            <p>{{productInShoppingCart.product.name}}: {{productInShoppingCart.quantity}}</p>
+          </div>
+          <p>Customer: {{order.customerName}}</p>
+          <p>Location: {{order.address}}</p>
+        </div>
+      </div>      
+  </div>  
+</div>

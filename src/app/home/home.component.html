@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="main">
+       <img src="assets/FR-000-Away-Kit-Launch_Teams_EN_Collection-Banner_2034x678_77137a95-a667-405a-8a07-2f998dcbf1f9.webp" class="image" id="away-kit-image">
+        <div class="products">
+            <div class="product-container" *ngFor="let product of productsInHomeScreen; let i = index">
+                <app-product [product]="product"></app-product>
+            </div>
+        </div> 
+    </div>
+</div>
