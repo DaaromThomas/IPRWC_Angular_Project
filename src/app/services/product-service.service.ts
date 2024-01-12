@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductServiceService {
-  baseUrl: string = "http://85.215.60.238:8080";
+  baseUrl: string = "http://thomaspijper.com:8080";
   products: Product[] = [];
 
   constructor(private http: HttpClient) {
@@ -15,7 +15,7 @@ export class ProductServiceService {
   }
 
   public all(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl + "/products");
+    return this.http.get<Product[]>(`${this.baseUrl}/products`);
   }
 
   getAllProducts() {
@@ -32,8 +32,8 @@ export class ProductServiceService {
       'Content-Type': 'application/json'
     });
 
-    this.http.post(this.baseUrl + "/products", product, { headers })
-      .subscribe(() => {
+    this.http.post(`${this.baseUrl}/products`, product, { headers })
+      .subscribe((data) => {
         this.getAllProducts();
       });
   }

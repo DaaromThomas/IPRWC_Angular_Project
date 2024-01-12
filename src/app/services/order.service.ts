@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class OrderService {
   private orders: Order[] = [];
   private orders$ = new BehaviorSubject<Order[]>([]);
-  private baseURL: string = "http://85.215.60.238:8080";
+  private baseURL: string = "http://thomaspijper.com:8080/orders";
 
 
   constructor(private http: HttpClient, private cartService: CartService, private router: Router) { }
@@ -26,12 +26,12 @@ export class OrderService {
     });
  
     this.cartService.emptyCart();
-    this.http.post(this.baseURL + "/orders", order, { headers }).subscribe();
+    this.http.post(this.baseURL, order, { headers }).subscribe();
     this.router.navigate(['/home']);
  }
 
   public getOrders(){
-    this.http.get(this.baseURL + "/orders")
+    this.http.get(this.baseURL)
     .subscribe(
       (data: any) => {
         this.orders = data;

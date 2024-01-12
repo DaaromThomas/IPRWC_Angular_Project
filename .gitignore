@@ -192,3 +192,6 @@ dist
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/angular,node,visualstudiocode
+.firebase/hosting.ZGlzdFxpcHJ3Yy1hbmd1bGFyLXByb2plY3RcYnJvd3Nlcg.cache
+.firebaserc
+firebase.json

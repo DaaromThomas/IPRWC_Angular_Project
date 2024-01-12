@@ -8,7 +8,7 @@ import { Account } from '../interfaces/Account';
   providedIn: 'root'
 })
 export class LoginService {
-  private baseURL: string = 'http://85.215.60.238:8080';
+  private baseURL: string = "http://thomaspijper.com:8080/login";
 
   private account_!: Account | null;
   private account$: Subject<any> = new Subject<any>();
@@ -27,7 +27,7 @@ export class LoginService {
     const body = { username, password };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.post(this.baseURL + '/login', body, { headers })
+    return this.http.post(this.baseURL, body, { headers })
       .pipe(
         catchError(error => {
           return throwError(error);

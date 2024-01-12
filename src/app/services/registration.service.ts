@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class RegistrationService {
-  private baseURL: string = 'http://85.215.60.238:8080';
+  private baseURL: string = "http://thomaspijper.com:8080/create-account";
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +15,7 @@ export class RegistrationService {
     const body = { username, password };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.post(this.baseURL + '/create-account', body, { headers })
+    return this.http.post(this.baseURL, body, { headers })
       .pipe(
         catchError(error => {
           return throwError(error);
